@@ -1,0 +1,29 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2759
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 CREATE DATABASE PatientRiskDB;\
+\
+USE PatientRiskDB;\
+\
+CREATE TABLE PatientData (\
+    id INT AUTO_INCREMENT PRIMARY KEY,\
+    age INT NOT NULL,\
+    gender VARCHAR(10) NOT NULL,\
+    glucose_level FLOAT NOT NULL,\
+    blood_pressure FLOAT NOT NULL,\
+    bmi FLOAT NOT NULL,\
+    smoking_history VARCHAR(20) NOT NULL,\
+    physical_activity FLOAT NOT NULL,\
+    diabetes_risk FLOAT,\
+    hypertension_risk FLOAT,\
+    stroke_risk FLOAT\
+);\
+\
+-- Sample Insert Query\
+INSERT INTO PatientData (age, gender, glucose_level, blood_pressure, bmi, smoking_history, physical_activity, diabetes_risk, hypertension_risk, stroke_risk)\
+VALUES (45, 'Male', 120, 130, 27.5\
+}
