@@ -1,65 +1,106 @@
-# AI-Powered Patient Risk Prediction System
+### README: Patient Risk Prediction System
 
-**June 2024**
+#### **Overview**
+The Patient Risk Prediction System leverages machine learning models to predict risks for conditions such as diabetes, hypertension, and strokes. The system uses structured datasets to train and evaluate various classification models, ensuring high accuracy and reliable predictions.
 
-## Overview
-The AI-Powered Patient Risk Prediction System is a full-stack application designed to assist healthcare providers in identifying high-risk patients for conditions such as diabetes and hypertension. By leveraging machine learning models trained on historical data, this system aims to help providers proactively manage patient health.
+---
 
-## Features
-- **Real-Time Patient Monitoring:** Frontend dashboard for viewing real-time patient risk levels.
-- **Risk Prediction Models:** Uses machine learning models to predict risks for specific health conditions.
-- **Secure Data Management:** Stores patient data securely with SQL, ensuring quick access and scalable storage.
-- **Continuous Integration & Deployment:** Automated CI/CD with Jenkins for smooth and reliable updates.
+### **Datasets**
+- **Diabetes Dataset**:
+  - Predicts whether a patient is at risk of diabetes.
+  - Target Variable: `Diabetes`
+- **Hypertension Dataset**:
+  - Predicts the likelihood of a patient having hypertension.
+  - Target Variable: `target`
+- **Strokes Dataset**:
+  - Predicts the probability of a stroke occurrence.
+  - Target Variable: `stroke`
 
-## Tech Stack
-- **Frontend:** React, TypeScript
-- **Backend:** Java Spring Boot
-- **Machine Learning Models:** Python (TensorFlow/PyTorch)
-- **Database:** SQL
-- **CI/CD:** Jenkins
+---
 
-## Installation
+### **Models Evaluated**
+1. Logistic Regression
+2. Decision Tree
+3. Random Forest
+4. K-Nearest Neighbors (KNN)
+5. Multinomial Naive Bayes (for normalized datasets)
 
-### Prerequisites
-1. Node.js (for React frontend)
-2. Java (for Spring Boot backend)
-3. Python (for training ML models)
-4. SQL-compatible database (e.g., MySQL, PostgreSQL)
-5. Jenkins (for CI/CD setup)
+---
 
-### Steps
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/your-repo-url
-   cd patient-risk-prediction
-   ```
+### **Results Summary**
 
-2. **Frontend Setup:**
-   ```bash
-   cd frontend
-   npm install
-   npm start
-   ```
+#### **Diabetes Dataset**
+| Model                  | Training Accuracy | Testing Accuracy | F1 Score (Test) |
+|------------------------|-------------------|------------------|-----------------|
+| Logistic Regression    | 74.78%           | 74.61%          | 74.60%          |
+| Decision Tree          | 97.17%           | 65.86%          | 65.85%          |
+| Random Forest          | 97.17%           | 72.57%          | 72.53%          |
+| KNN                    | 82.89%           | 69.48%          | 69.46%          |
 
-3. **Backend Setup:**
-   ```bash
-   cd ../backend
-   ./mvnw spring-boot:run
-   ```
+#### **Hypertension Dataset**
+| Model                  | Training Accuracy | Testing Accuracy | F1 Score (Test) |
+|------------------------|-------------------|------------------|-----------------|
+| Logistic Regression    | 85.87%           | 85.74%          | 85.62%          |
+| Decision Tree          | 100%             | 100%            | 100%            |
+| Random Forest          | 100%             | 100%            | 100%            |
+| KNN                    | 100%             | 100%            | 100%            |
+| Multinomial Naive Bayes| 78.61%           | 78.55%          | 78.30%          |
 
-4. **Database Setup:**
-   - Configure your SQL database and update connection strings in the backend `application.properties`.
+#### **Strokes Dataset**
+| Model                  | Training Accuracy | Testing Accuracy | F1 Score (Test) |
+|------------------------|-------------------|------------------|-----------------|
+| Logistic Regression    | 68.39%           | 68.25%          | 68.10%          |
+| Decision Tree          | 100%             | 99.94%          | 99.94%          |
+| Random Forest          | 100%             | 99.66%          | 99.66%          |
+| KNN                    | 94.42%           | 89.64%          | 89.57%          |
+| Multinomial Naive Bayes| 66.31%           | 66.94%          | 66.03%          |
 
-5. **CI/CD Setup (Jenkins):**
-   - Set up Jenkins jobs to automate deployment for both the frontend and backend.
+---
 
-## Usage
-1. **Access the Dashboard:** Open the frontend in a browser to view patient risk statuses and predictions.
-2. **Data Input:** Load patient data (historical and real-time) into the database for accurate model predictions.
-3. **Monitor & Manage:** Use the dashboard to monitor and manage high-risk patients effectively.
+### **Key Observations**
+1. **Decision Tree and Random Forest**:
+   - Achieved perfect accuracy on the Hypertension and Stroke datasets, likely due to overfitting on small data variations.
+   - Performed less consistently on the Diabetes dataset.
 
-## Contributing
-1. Fork the repository.
-2. Create a new branch.
-3. Make your changes and submit a pull request.
+2. **Logistic Regression**:
+   - Provided stable and interpretable results across all datasets.
+   - Best choice for cases requiring linear separation and simplicity.
 
+3. **KNN**:
+   - Showed strong performance, especially for Stroke predictions with accuracy close to 90%.
+
+4. **Multinomial Naive Bayes**:
+   - Performed well on normalized data but struggled with complex, high-dimensional datasets.
+
+---
+
+### **System Features**
+- **Normalization**:
+  - Applied `MinMaxScaler` to scale features between 0 and 1, ensuring compatibility with all models.
+- **Evaluation Metrics**:
+  - Accuracy, F1 Score, Precision, and Recall are calculated for both training and testing datasets.
+- **Heatmap Visualization**:
+  - Correlation matrices provide insights into feature relationships and predictive power.
+
+---
+
+### **How to Use**
+1. **Pre-requisites**:
+   - Python 3.7+
+   - Libraries: `pandas`, `numpy`, `sklearn`, `seaborn`, `matplotlib`
+2. **Run the Code**:
+   - Update the dataset paths in the `datasets` dictionary.
+   - Execute the script to train models and visualize results.
+3. **View Outputs**:
+   - Model metrics are printed for each dataset.
+   - Correlation matrices and insights are displayed as visualizations.
+
+---
+
+### **Conclusion**
+- This system demonstrates the ability to predict patient risk effectively using machine learning models.
+- Decision Tree and Random Forest are highly accurate but prone to overfitting.
+- Logistic Regression is reliable for datasets with linear relationships.
+- Feature normalization is essential for models like Multinomial Naive Bayes.
+
+For further enhancements, consider hyperparameter tuning and additional data preprocessing techniques. Let me know if you need help with extensions or deployment strategies!
